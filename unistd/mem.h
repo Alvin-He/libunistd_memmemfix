@@ -2,8 +2,9 @@
 #define mem_h
 
 #include "cfunc.h"
+#include <string.h>
 
-CFUNC void* memmem(const void* haystack, size_t haystack_len, const void* needle, size_t needle_len)
+CFUNC inline void* memmem(const void* haystack, size_t haystack_len, const void* needle, size_t needle_len)
 {	if (haystack == 0)
 	{	return 0;
 	}
@@ -16,7 +17,7 @@ CFUNC void* memmem(const void* haystack, size_t haystack_len, const void* needle
 	if (needle_len == 0)
 	{	return 0;
 	}
-	for (const char* h = haystack;
+	for (const char* h = (const char*)haystack;
 			haystack_len >= needle_len;
 			++h, --haystack_len)
 	{	if (!memcmp(h, needle, needle_len))
